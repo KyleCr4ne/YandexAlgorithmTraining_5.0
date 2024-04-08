@@ -19,8 +19,17 @@ int main() {
     std::cin >> Type;
 
 
-    int diff = std::max(0, First.G2_ + Second.G2_ - First.G1_ - Second.G1_);
+    int diff = First.G2_ + Second.G2_ - First.G1_ - Second.G1_;
 
-    std::cout << diff + !((Type == 2 && (First.G1_ > First.G2_)) || (Type == 1 && (Second.G2_ < diff))) << std::endl;
+    if (diff < 0) {
+        std::cout << 0 << std::endl;
+        return 0;
+    }
+    if (Type == 2) {
+        std::cout << diff + !(First.G1_ > Second.G2_) << std::endl;
+        return 0;
+    }
+    std::cout << diff + !(Second.G1_ + diff > First.G2_) << std::endl;
     return 0;
+
 }
